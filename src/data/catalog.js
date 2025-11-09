@@ -1,14 +1,11 @@
 export const social = {
-  tiktok: 'https://www.tiktok.com/@larissa_jayaa',
-  instagram: 'https://www.instagram.com/larissa_jaya/',
-  shopee: '#',
-  tokopedia: '#',
-
-  // 👉 UBAH DI SINI
-  phone: '6288239593991',
-
-  address: 'Tlogogedong RT 03 / RW 03, Desa Tlogorejo, Kec. Karangawen, Kab. Demak (59566)',
-  maps: 'https://maps.app.goo.gl/XoKkfrtvte3UWpJc8'
+  phone: "6285128043387",   // GANTI HANYA INI
+  address: "Tlogogedong RT 03 / RW 03, Desa Tlogorejo, Kec. Karangawen, Kab. Demak (59566)",
+  maps: "https://maps.app.goo.gl/XoKkfrtvte3UWpJc8",
+  instagram: "https://www.instagram.com/larissa_jaya/",
+  tiktok: "https://www.tiktok.com/@larissa_jayaa",
+  shopee: "#",
+  tokopedia: "#"
 }
 
 
