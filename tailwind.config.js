@@ -3,29 +3,24 @@ export default {
   content: ["./index.html", "./src/**/*.{js,jsx}"],
   theme: {
     extend: {
-      // Brand palet baru: biru–teal lembut
       colors: {
         brand: {
-          50:  "#eef7ff",
-          100: "#d9efff",
-          200: "#bfe4ff",
-          300: "#97d1ff",
-          400: "#5fb6ff",
-          500: "#2f9cf5",
-          600: "#1f83d8",
-          700: "#176ab0",
-          800: "#155b92",
-          900: "#124a75"
+          50:  "#fff1f5",
+          100: "#ffe4ec",
+          200: "#fecdd9",
+          300: "#fba4bf",
+          400: "#f772a0",
+          500: "#ec407a", // utama
+          600: "#d81b60",
+          700: "#b0003a",
+          800: "#8e0038",
+          900: "#6a0030"
         }
       },
-      borderRadius: {
-        xl: "0.9rem",
-        "2xl": "1.25rem"
-      },
       boxShadow: {
-        soft: "0 8px 24px rgba(17, 24, 39, 0.06)"
+        soft: "0 6px 20px rgba(236,64,122,0.10)"
       }
-    }
+    },
   },
-  plugins: []
+  plugins: [],
 }

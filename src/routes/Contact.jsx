@@ -1,24 +1,23 @@
+// D:\KULIAH\larissa-jaya-website\src\routes\Contact.jsx
 import { social } from '../data/catalog'
 import { waLink } from '../utils/helpers'
 
-export default function Contact(){
-  // Pesan umum (prefilled) untuk tombol WhatsApp di halaman Kontak
-  const defaultMessage = "Halo kak, saya mau tanya tentang produk di Larissa Jaya 😊"
-  const waUrl = waLink({ phone: social.phone, text: defaultMessage })
+export default function Contact() {
+  // pesan default yang diprefill
+  const msg = 'Halo kak, saya mau tanya tentang produk di Larissa Jaya 😊';
+  const waUrl = waLink({ phone: social.phone, text: msg });
 
   return (
     <div className="container-narrow py-10">
       <h1 className="text-2xl font-bold">Kontak & Lokasi</h1>
-
       <p className="mt-2 text-gray-600">{social.address}</p>
       <p className="mt-1">
-        Telp/WA:{" "}
+        Telp/WA:{' '}
         <a
           className="underline"
           href={`https://wa.me/${social.phone}`}
           target="_blank"
           rel="noreferrer"
-          title="Klik untuk chat sekarang"
         >
           0{social.phone.slice(2)}
         </a>
@@ -29,15 +28,25 @@ export default function Contact(){
           href={waUrl}
           target="_blank"
           rel="noreferrer"
-          className="px-4 py-2 rounded-xl bg-brand-600 text-white hover:bg-brand-700"
+          className="btn btn-primary"
         >
-          Chat WhatsApp
+          Chat WhatsApp (dengan pesan)
         </a>
+
+        <a
+          href={`https://wa.me/${social.phone}`}
+          target="_blank"
+          rel="noreferrer"
+          className="btn btn-ghost"
+        >
+          Chat WhatsApp (kosong)
+        </a>
+
         <a
           href={social.maps}
           target="_blank"
           rel="noreferrer"
-          className="px-4 py-2 rounded-xl border"
+          className="btn btn-ghost"
         >
           Buka Google Maps
         </a>
@@ -52,5 +61,5 @@ export default function Contact(){
         ></iframe>
       </div>
     </div>
-  )
+  );
 }

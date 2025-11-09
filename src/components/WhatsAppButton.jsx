@@ -1,7 +1,7 @@
 import { waLink } from '../utils/helpers'
 
 export default function WhatsAppButton({ text = "Pesan via WhatsApp" }) {
-  const phone = "6285128043387"; // nomor toko format internasional
+  const phone = "6288239593991"; // nomor toko format internasional
 
   // Pesan otomatis (URL Encoded)
   const message = encodeURIComponent("Halo kak, saya mau tanya tentang produk di Larissa Jaya 😊");
