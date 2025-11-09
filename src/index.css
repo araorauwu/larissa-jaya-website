@@ -2,24 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Layout helpers */
-.container-narrow{ @apply max-w-6xl mx-auto px-4; }
+/* ====== Global look & feel ====== */
+html, body {
+  height: 100%;
+}
+body {
+  @apply text-gray-800 bg-rose-mist;
+}
 
-/* Cards & surfaces */
-.card{ @apply bg-white rounded-2xl border shadow-card; }
-.card-ghost{ @apply bg-white/70 backdrop-blur border rounded-2xl shadow-card; }
+/* Container & cards */
+.container-narrow { @apply max-w-6xl mx-auto px-4; }
+.card          { @apply bg-white/90 backdrop-blur rounded-2xl border border-gray-200/70 shadow-card; }
 
 /* Buttons */
-.btn{ @apply inline-flex items-center justify-center px-4 py-2 rounded-xl transition select-none; }
-.btn-primary{ @apply btn bg-brand-500 text-white hover:bg-brand-600 shadow-soft; }
-.btn-ghost{ @apply btn border hover:bg-brand-50; }
-.btn-pill{ @apply px-4 py-1.5 rounded-full text-sm font-medium; }
+.btn          { @apply inline-flex items-center justify-center px-4 py-2 rounded-xl transition; }
+.btn-primary  { @apply btn bg-brand-500 text-white hover:bg-brand-600 shadow-soft; }
+.btn-ghost    { @apply btn border border-gray-200 hover:bg-brand-50; }
 
-/* Pills/chips */
-.chip{ @apply inline-block text-xs px-2 py-0.5 rounded-full bg-brand-100 text-brand-700; }
+/* Small helpers */
+.badge        { @apply inline-block text-xs px-2 py-0.5 rounded-lg bg-brand-100 text-brand-800; }
+.link-underline { @apply underline decoration-2 decoration-brand-300 underline-offset-4 hover:text-brand-700; }
 
-/* Headings */
-.h-title{ @apply text-3xl md:text-4xl font-extrabold text-ink-900; }
-
-/* Page background gradient (halus, tidak silau) */
-.page-bg{ @apply bg-gradient-to-b from-ink-50 via-white to-white; }
+/* Navbar & footer glass */
+.nav-glass    { @apply bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-b; }
+.footer-glass { @apply bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-t; }

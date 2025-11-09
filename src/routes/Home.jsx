@@ -6,13 +6,14 @@ import { categories } from '../data/catalog'
 export default function Home(){
   return (
     <div>
-      <section className="relative">
-        <div className="container-narrow py-8">
-          <div className="card-ghost overflow-hidden">
-            <div className="bg-gradient-to-r from-brand-50 to-white h-48 md:h-60"></div>
-            <div className="p-6 md:p-8">
-              <h1 className="h-title text-brand-800">Larissa Jaya</h1>
-              <p className="mt-2 text-ink-600">
+      {/* HERO */}
+      <section>
+        <div className="container-narrow py-10">
+          <div className="card overflow-hidden">
+            <div className="h-40 sm:h-56 bg-gradient-to-br from-brand-50 via-white to-white" />
+            <div className="p-6 sm:p-7">
+              <h1 className="text-3xl sm:text-4xl font-extrabold text-brand-800">Larissa Jaya</h1>
+              <p className="mt-2 text-gray-600">
                 Toko perlengkapan: sandal, sepatu, seragam sekolah, tas, mainan, ATK, aksesoris, dan
                 perlengkapan sholat — promosi & informasi produk.
               </p>
@@ -25,11 +26,12 @@ export default function Home(){
         </div>
       </section>
 
-      <section className="container-narrow py-10">
+      {/* KATEGORI + SIDEBAR */}
+      <section className="container-narrow pb-12">
         <div className="grid md:grid-cols-[1fr,280px] gap-6">
           <div>
             <div className="flex items-end justify-between mb-4">
-              <h2 className="text-xl font-bold text-ink-900">Kategori</h2>
+              <h2 className="text-xl font-bold">Kategori</h2>
               <Link to="/katalog" className="text-brand-700 hover:underline">Semua</Link>
             </div>
             <CategoryGrid items={categories} />
