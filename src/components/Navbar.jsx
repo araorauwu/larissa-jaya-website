@@ -1,31 +1,35 @@
-import { Link, NavLink } from 'react-router-dom'
+// D:\KULIAH\larissa-jaya-website\src\components\Navbar.jsx
+import { Link, NavLink } from "react-router-dom";
+import { social } from "../data/catalog";
+import Logo from "./Logo";
 
 export default function Navbar(){
-  const base = 'px-3 py-2 rounded-lg hover:bg-brand-50'
-  const active = ({isActive}) => isActive ? base + ' bg-brand-100 text-brand-800' : base
-
+  const navClass = ({ isActive }) =>
+    isActive
+      ? "text-rose-600 font-semibold"
+      : "text-gray-600 hover:text-rose-500 transition";
   return (
-    <header className="nav-glass sticky top-0 z-40">
-      <div className="container-narrow flex items-center gap-4 py-3">
-        <Link to="/" className="font-extrabold text-lg tracking-tight text-brand-700">
-          Larissa Jaya
+    <header className="sticky top-0 z-40 bg-white/70 nav-glass shadow-glass border-b border-white/60">
+      <nav className="container-narrow flex items-center justify-between py-3">
+        <Link to="/" className="flex items-center gap-2">
+          <Logo />
         </Link>
 
-        <nav className="ml-auto hidden sm:flex gap-1">
-          <NavLink to="/" className={active}>Beranda</NavLink>
-          <NavLink to="/katalog" className={active}>Katalog</NavLink>
-          <NavLink to="/kontak" className={active}>Kontak</NavLink>
-          <NavLink to="/tautan" className={active}>E-commerce</NavLink>
-        </nav>
+        <div className="hidden sm:flex items-center gap-6">
+          <NavLink to="/" className={navClass}>Beranda</NavLink>
+          <NavLink to="/katalog" className={navClass}>Katalog</NavLink>
+          <NavLink to="/kontak" className={navClass}>Kontak</NavLink>
+          <NavLink to="/tautan" className={navClass}>E-commerce</NavLink>
+        </div>
 
         <a
-          href="https://wa.me/6285128043387?text=Halo%20kak,%20saya%20mau%20tanya%20produk%20di%20Larissa%20Jaya%20%F0%9F%98%8A"
-          className="btn-primary hidden sm:inline-flex"
+          href={`https://wa.me/${social.phone}?text=${encodeURIComponent("Halo kak, saya mau tanya produk di Larissa Jaya 😊")}`}
           target="_blank" rel="noreferrer"
+          className="btn-primary"
         >
           Chat WA
         </a>
-      </div>
+      </nav>
     </header>
-  )
+  );
 }

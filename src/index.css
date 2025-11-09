@@ -1,28 +1,49 @@
+/* D:\KULIAH\larissa-jaya-website\src\index.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ====== Global look & feel ====== */
-html, body {
-  height: 100%;
-}
-body {
-  @apply text-gray-800 bg-rose-mist;
+/* ==== THEME ==== */
+:root{
+  --pink-bg: rgba(244,63,94,.12); /* naik-turun opasitas sesuai selera */
 }
 
-/* Container & cards */
-.container-narrow { @apply max-w-6xl mx-auto px-4; }
-.card          { @apply bg-white/90 backdrop-blur rounded-2xl border border-gray-200/70 shadow-card; }
+body{
+  @apply text-gray-800;
+  background:
+    radial-gradient(60rem 60rem at -10% -10%, var(--pink-bg), transparent 60%),
+    radial-gradient(60rem 60rem at 110% 110%, var(--pink-bg), transparent 60%),
+    #fff;
+}
 
-/* Buttons */
-.btn          { @apply inline-flex items-center justify-center px-4 py-2 rounded-xl transition; }
-.btn-primary  { @apply btn bg-brand-500 text-white hover:bg-brand-600 shadow-soft; }
-.btn-ghost    { @apply btn border border-gray-200 hover:bg-brand-50; }
+/* ==== REUSABLE ==== */
+.container-narrow{ @apply max-w-6xl mx-auto px-4; }
+.card{ @apply rounded-2xl border border-rose-100 bg-white shadow-sm transition; }
+.card:hover{ transform: translateY(-2px); box-shadow: 0 10px 24px rgba(16,24,40,.06); }
+.badge{ @apply inline-block text-xs px-2 py-0.5 rounded-lg bg-rose-100 text-rose-800; }
+.btn{ @apply inline-flex items-center justify-center px-4 py-2 rounded-xl transition; }
+.btn-primary{ @apply btn bg-rose-500 text-white hover:bg-rose-600 shadow; }
+.btn-ghost{ @apply btn border hover:bg-rose-50; }
 
-/* Small helpers */
-.badge        { @apply inline-block text-xs px-2 py-0.5 rounded-lg bg-brand-100 text-brand-800; }
-.link-underline { @apply underline decoration-2 decoration-brand-300 underline-offset-4 hover:text-brand-700; }
+/* ==== NAVBAR GLASS ==== */
+.nav-glass{ backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.shadow-glass{ box-shadow: 0 8px 24px rgba(16,24,40,.06), 0 20px 60px rgba(244,63,94,.08); }
 
-/* Navbar & footer glass */
-.nav-glass    { @apply bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-b; }
-.footer-glass { @apply bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-t; }
+/* ==== KAWAII HOVER: ICON BUBBLE + WIGGLE ==== */
+@keyframes soft-wiggle{
+  0%,100%{ transform: translateY(0) rotate(0); }
+  50%{ transform: translateY(-2px) rotate(-1.5deg); }
+}
+.icon-bubble{
+  @apply w-12 h-12 rounded-full grid place-items-center;
+  background: radial-gradient(circle at 30% 30%, #ffe4e6, #fecdd3);
+  box-shadow: inset 0 2px 6px rgba(255,255,255,.6), 0 6px 18px rgba(244,63,94,.18);
+}
+.kawaii:hover .icon-bubble{ animation: soft-wiggle .8s ease-in-out; }
+
+/* ==== PASTEL GRADIENT DIVIDER ==== */
+.divider-pastel{
+  height: 12px; border-radius: 9999px;
+  background: linear-gradient(90deg, #ffe4e6, #fecdd3, #ffe4e6);
+  opacity: .7;
+}
