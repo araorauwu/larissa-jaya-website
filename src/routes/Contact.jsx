@@ -2,9 +2,9 @@ import { social } from '../data/catalog'
 import { waLink } from '../utils/helpers'
 
 export default function Contact(){
-  // Pesan WA umum (prefilled)
-  const msg = "Halo kak, saya mau tanya tentang produk di Larissa Jaya 😊 (via Website)";
-  const chatUrl = waLink({ phone: social.phone, text: msg });
+  // Pesan umum (prefilled) untuk tombol WhatsApp di halaman Kontak
+  const defaultMessage = "Halo kak, saya mau tanya tentang produk di Larissa Jaya 😊"
+  const waUrl = waLink({ phone: social.phone, text: defaultMessage })
 
   return (
     <div className="container-narrow py-10">
@@ -12,28 +12,27 @@ export default function Contact(){
 
       <p className="mt-2 text-gray-600">{social.address}</p>
       <p className="mt-1">
-        Telp/WA:{' '}
+        Telp/WA:{" "}
         <a
           className="underline"
           href={`https://wa.me/${social.phone}`}
           target="_blank"
           rel="noreferrer"
+          title="Klik untuk chat sekarang"
         >
           0{social.phone.slice(2)}
         </a>
       </p>
 
       <div className="mt-4 flex gap-3">
-        {/* Tombol WA dengan pesan otomatis */}
         <a
-          href={chatUrl}
+          href={waUrl}
           target="_blank"
           rel="noreferrer"
-          className="px-4 py-2 rounded-xl bg-brand-600 text-white hover:bg-brand-700 transition"
+          className="px-4 py-2 rounded-xl bg-brand-600 text-white hover:bg-brand-700"
         >
           Chat WhatsApp
         </a>
-
         <a
           href={social.maps}
           target="_blank"
