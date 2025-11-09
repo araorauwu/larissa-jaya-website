@@ -9,7 +9,7 @@ export default function ProductCard({item}){
         <h4 className="font-semibold">{item.name}</h4>
         <p className="text-sm text-gray-500 mt-1">{item.note}</p>
         <div className="mt-auto pt-3">
-          <WhatsAppButton message={msg} />
+          <WhatsAppButton text={`Tanya Produk`} />
         </div>
       </div>
     </div>

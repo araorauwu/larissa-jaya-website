@@ -1,14 +1,21 @@
 import { waLink } from '../utils/helpers'
 
-export default function WhatsAppButton({label='Pesan via WhatsApp', message='Halo, saya mau tanya produk', phone='6285128043387'}){
+export default function WhatsAppButton({ text = "Pesan via WhatsApp" }) {
+  const phone = "6285128043387"; // nomor toko format internasional
+
+  // Pesan otomatis (URL Encoded)
+  const message = encodeURIComponent("Halo kak, saya mau tanya tentang produk di Larissa Jaya 😊");
+
+  const waUrl = `https://wa.me/${phone}?text=${message}`;
+
   return (
     <a
-      href={waLink({phone, text: message})}
+      href={waUrl}
       target="_blank"
-      rel="noreferrer"
-      className="inline-flex items-center justify-center px-4 py-2 rounded-xl bg-brand-600 text-white hover:bg-brand-700 transition"
+      rel="noopener noreferrer"
+      className="bg-green-600 hover:bg-green-700 text-white font-medium px-4 py-2 rounded-xl inline-flex items-center"
     >
-      {label}
+      {text}
     </a>
-  )
+  );
 }
