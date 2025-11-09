@@ -1,12 +1,13 @@
 export const social = {
   tiktok: 'https://www.tiktok.com/@larissa_jayaa',
-  instagram: 'https://www.instagram.com/larissa_jaya/',
-  shopee: '#', // placeholder
-  tokopedia: '#', // placeholder
-  phone: '6285128043387',
+  instagram: 'https://www.instagram.com/larissa_jaya?igsh=YnRmc2gzYnc5bDU2',
+  shopee: '#',      // nanti diganti kalau sudah punya
+  tokopedia: '#',   // nanti juga diganti kalau sudah punya
+  phone: '6285128043387', // format WA harus dimulai 62
   address: 'Tlogogedong RT 03 / RW 03, Desa Tlogorejo, Kec. Karangawen, Kab. Demak (59566)',
   maps: 'https://maps.app.goo.gl/XoKkfrtvte3UWpJc8'
 }
+
 
 export const categories = [
   { slug: 'sandal', name: 'Sandal', desc: 'Sandal untuk semua usia', subs: ['Wanita','Pria','Anak'] },
