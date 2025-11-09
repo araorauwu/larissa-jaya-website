@@ -2,17 +2,26 @@ import { useParams, Link } from 'react-router-dom'
 import { categories, products } from '../data/catalog'
 import ProductGrid from '../components/ProductGrid'
 import Sidebar from '../components/Sidebar'
-import { useState, useMemo } from 'react'
+import { useMemo, useState } from 'react'
 
-export default function Category(){
+export default function Category(){             // ← NAMA & DEFAULT-NYA Category
   const { slug } = useParams()
   const cat = categories.find(c => c.slug === slug)
   const [sub, setSub] = useState('')
 
-  const items = useMemo(()=>products.filter(p => p.category === slug && (sub ? p.sub===sub : true)), [slug, sub])
+  const items = useMemo(() => {
+    return products.filter(p =>
+      p.category === slug && (sub ? p.sub === sub : true)
+    )
+  }, [slug, sub])
 
   if(!cat){
-    return <div className="container-narrow py-10"><p>Kategori tidak ditemukan.</p><Link to="/katalog" className="text-brand-700 underline">Kembali</Link></div>
+    return (
+      <div className="container-narrow py-10">
+        <p>Kategori tidak ditemukan.</p>
+        <Link to="/katalog" className="text-brand-700 underline">Kembali</Link>
+      </div>
+    )
   }
 
   return (
@@ -26,8 +35,12 @@ export default function Category(){
           <p className="text-gray-600 mt-1">{cat.desc}</p>
 
           <div className="mt-4">
-            <select value={sub} onChange={(e)=>setSub(e.target.value)} className="rounded-xl border px-4 py-2">
-              <option value="">Semua Sub‑kategori</option>
+            <select
+              value={sub}
+              onChange={(e)=>setSub(e.target.value)}
+              className="rounded-xl border px-4 py-2"
+            >
+              <option value="">Semua Sub-kategori</option>
               {cat.subs.map(s => <option key={s} value={s}>{s}</option>)}
             </select>
           </div>
@@ -36,6 +49,7 @@ export default function Category(){
             <ProductGrid items={items} />
           </div>
         </div>
+
         <Sidebar />
       </div>
     </div>

@@ -3,7 +3,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './routes/Home'
 import Catalog from './routes/Catalog'
-import Category from './routes/Category'
+import Category from './routes/Category'   // ← pastikan ini benar
 import Contact from './routes/Contact'
 import Links from './routes/Links'
 
@@ -15,7 +15,7 @@ export default function App(){
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/katalog" element={<Catalog />} />
-          <Route path="/kategori/:slug" element={<Category />} />
+          <Route path="/kategori/:slug" element={<Category />} /> {/* ← kategori */}
           <Route path="/kontak" element={<Contact />} />
           <Route path="/tautan" element={<Links />} />
         </Routes>

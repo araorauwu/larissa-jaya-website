@@ -2,8 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Layout helpers */
 .container-narrow{ @apply max-w-6xl mx-auto px-4; }
-.card{ @apply bg-white rounded-2xl border shadow-sm; }
-.btn{ @apply inline-flex items-center justify-center px-4 py-2 rounded-xl transition; }
+
+/* Cards & surfaces */
+.card{ @apply bg-white rounded-2xl border shadow-card; }
+.card-ghost{ @apply bg-white/70 backdrop-blur border rounded-2xl shadow-card; }
+
+/* Buttons */
+.btn{ @apply inline-flex items-center justify-center px-4 py-2 rounded-xl transition select-none; }
 .btn-primary{ @apply btn bg-brand-500 text-white hover:bg-brand-600 shadow-soft; }
 .btn-ghost{ @apply btn border hover:bg-brand-50; }
+.btn-pill{ @apply px-4 py-1.5 rounded-full text-sm font-medium; }
+
+/* Pills/chips */
+.chip{ @apply inline-block text-xs px-2 py-0.5 rounded-full bg-brand-100 text-brand-700; }
+
+/* Headings */
+.h-title{ @apply text-3xl md:text-4xl font-extrabold text-ink-900; }
+
+/* Page background gradient (halus, tidak silau) */
+.page-bg{ @apply bg-gradient-to-b from-ink-50 via-white to-white; }
