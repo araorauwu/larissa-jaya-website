@@ -1,0 +1,32 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <!-- alas sandal (biru pastel) -->
+  <defs>
+    <linearGradient id="sole" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#60A5FA"></stop>
+      <stop offset="1" stop-color="#3B82F6"></stop>
+    </linearGradient>
+    <linearGradient id="strap" x1="0" x2="1">
+      <stop offset="0" stop-color="#FDE047"></stop>
+      <stop offset="1" stop-color="#F59E0B"></stop>
+    </linearGradient>
+  </defs>
+
+  <!-- sandal kiri -->
+  <g transform="translate(50,18)">
+    <path d="M44 8c24 0 42 26 42 58v86c0 26-14 40-34 40h-6c-20 0-34-14-34-40V66C12 34 20 8 44 8z" fill="url(#sole)"></path>
+    <!-- bayangan tipis -->
+    <path d="M50 18c20 4 32 26 32 56v78c0 18-6 30-18 36 8-8 12-20 12-36V66c0-20-8-36-26-46z" fill="#1f2937" opacity=".12"></path>
+    <!-- tali -->
+    <path d="M69 109c-10-20-20-33-25-39-6 6-15 19-25 39-2 5-8 6-11 4-3-2-4-7-2-10 14-25 28-43 38-49 4-2 8-2 12 0 10 6 24 24 38 49 2 3 1 8-2 10-3 2-9 1-11-4z" fill="url(#strap)"></path>
+    <!-- jembatan jempol -->
+    <circle cx="44" cy="88" r="6" fill="#F59E0B"></circle>
+  </g>
+
+  <!-- sandal kanan -->
+  <g transform="translate(132,18)">
+    <path d="M44 8c24 0 42 26 42 58v86c0 26-14 40-34 40h-6c-20 0-34-14-34-40V66C12 34 20 8 44 8z" fill="url(#sole)"></path>
+    <path d="M50 18c20 4 32 26 32 56v78c0 18-6 30-18 36 8-8 12-20 12-36V66c0-20-8-36-26-46z" fill="#1f2937" opacity=".12"></path>
+    <path d="M69 109c-10-20-20-33-25-39-6 6-15 19-25 39-2 5-8 6-11 4-3-2-4-7-2-10 14-25 28-43 38-49 4-2 8-2 12 0 10 6 24 24 38 49 2 3 1 8-2 10-3 2-9 1-11-4z" fill="url(#strap)"></path>
+    <circle cx="44" cy="88" r="6" fill="#F59E0B"></circle>
+  </g>
+</svg>

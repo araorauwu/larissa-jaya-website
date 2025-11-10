@@ -1,55 +1,36 @@
+// D:\KULIAH\larissa-jaya-website\src\components\Hero.jsx
 import { Link } from "react-router-dom";
-import { waLink } from "../utils/helpers";
-import { social } from "../data/catalog";
 
 export default function Hero() {
-  const waUrl = waLink({
-    phone: social.phone,
-    text: "Hai kak 😊 mau tanya produk Larissa Jaya dong~"
-  });
-
   return (
-    <section className="relative overflow-hidden py-16 sm:py-24">
+    <section className="relative">
+      {/* Gambar: tajam di desktop, blur tipis di mobile */}
+      <picture>
+        {/* Desktop & tablet → gambar bersih */}
+        <source media="(min-width: 768px)" srcSet="/hero/store_clean.png" />
+        {/* Mobile → boleh blur tipis */}
+        <img
+          src="/hero/store_clean.png"
+          alt="Foto Toko Larissa Jaya"
+          className="
+            block w-full h-[42vh] sm:h-[46vh] lg:h-[52vh]
+            object-cover object-center
+            blur-[3px] sm:blur-[1.5px] lg:blur-0
+            brightness-100 lg:brightness-100
+          "
+          loading="eager"
+        />
+      </picture>
 
-      {/* Pastel Blob Decoration */}
-      <div className="absolute -top-20 -left-24 w-72 h-72 bg-rose-200/30 rounded-full blur-3xl"></div>
-      <div className="absolute -bottom-24 -right-24 w-80 h-80 bg-rose-300/25 rounded-full blur-3xl"></div>
+      {/* Overlay gradient halus biar teks bawah kontras */}
+      <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-white/80 via-white/40 to-white/0" />
 
-      {/* Content */}
-      <div className="container-narrow relative text-center">
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-rose-700 tracking-tight">
-          Larissa Jaya
-        </h1>
+      {/* (Opsional) strip bayangan bawah biar transisi mulus */}
+      <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-b from-white/0 to-white" />
 
-        <p className="mt-3 text-gray-600 max-w-xl mx-auto leading-relaxed text-sm sm:text-base">
-          Toko sandal, sepatu, tas, seragam sekolah, aksesoris, mainan, ATK, dan perlengkapan anak & keluarga.
-        </p>
-
-        <div className="mt-6 flex flex-wrap justify-center gap-4">
-          <Link
-            to="/katalog"
-            className="
-              px-6 py-3 rounded-xl bg-rose-500 text-white hover:bg-rose-600
-              shadow-[0_4px_12px_rgba(244,63,94,0.25)]
-              transition-all
-            "
-          >
-            Lihat Katalog
-          </Link>
-
-          <a
-            href={waUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="
-              px-6 py-3 rounded-xl border border-rose-300 text-rose-600 hover:bg-rose-50
-              transition
-            "
-          >
-            Chat WhatsApp
-          </a>
-        </div>
-      </div>
+      {/* CTA di atas gambar (kalau mau dipakai sebagai hero penuh).
+          Sekarang kita biarkan heading tetap di section bawah seperti layout kamu,
+          jadi blok ini dikosongkan. */}
     </section>
   );
 }
