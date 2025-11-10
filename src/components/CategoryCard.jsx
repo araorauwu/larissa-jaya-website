@@ -1,3 +1,4 @@
+// D:\KULIAH\larissa-jaya-website\src\components\CategoryCard.jsx
 import { Link } from 'react-router-dom';
 
 const emojiMap = {
@@ -30,7 +31,6 @@ export default function CategoryCard({ item }) {
       "
     >
       <div className="p-5 flex gap-4 items-start">
-        
         {/* ICON BUBBLE */}
         <div
           className="
@@ -45,7 +45,7 @@ export default function CategoryCard({ item }) {
           {icon}
         </div>
 
-        {/* TEXT */}
+        {/* TEKS */}
         <div className="flex-1 min-w-0">
           <h3 className="font-semibold text-gray-800">{item.name}</h3>
 
@@ -71,7 +71,6 @@ export default function CategoryCard({ item }) {
             ))}
           </div>
         </div>
-
       </div>
     </Link>
   );

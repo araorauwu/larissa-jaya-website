@@ -3,11 +3,10 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ==== THEME ==== */
+/* ==== THEME (tetap) ==== */
 :root{
-  --pink-bg: rgba(244,63,94,.12); /* naik-turun opasitas sesuai selera */
+  --pink-bg: rgba(244,63,94,.12);
 }
-
 body{
   @apply text-gray-800;
   background:
@@ -16,7 +15,7 @@ body{
     #fff;
 }
 
-/* ==== REUSABLE ==== */
+/* ==== COMMON UTIL ==== */
 .container-narrow{ @apply max-w-6xl mx-auto px-4; }
 .card{ @apply rounded-2xl border border-rose-100 bg-white shadow-sm transition; }
 .card:hover{ transform: translateY(-2px); box-shadow: 0 10px 24px rgba(16,24,40,.06); }
@@ -24,29 +23,9 @@ body{
 .btn{ @apply inline-flex items-center justify-center px-4 py-2 rounded-xl transition; }
 .btn-primary{ @apply btn bg-rose-500 text-white hover:bg-rose-600 shadow; }
 .btn-ghost{ @apply btn border hover:bg-rose-50; }
-
-/* ==== NAVBAR GLASS ==== */
 .nav-glass{ backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
-.shadow-glass{ box-shadow: 0 8px 24px rgba(16,24,40,.06), 0 20px 60px rgba(244,63,94,.08); }
 
-/* ==== KAWAII HOVER: ICON BUBBLE + WIGGLE ==== */
-@keyframes soft-wiggle{
-  0%,100%{ transform: translateY(0) rotate(0); }
-  50%{ transform: translateY(-2px) rotate(-1.5deg); }
-}
-.icon-bubble{
-  @apply w-12 h-12 rounded-full grid place-items-center;
-  background: radial-gradient(circle at 30% 30%, #ffe4e6, #fecdd3);
-  box-shadow: inset 0 2px 6px rgba(255,255,255,.6), 0 6px 18px rgba(244,63,94,.18);
-}
-.kawaii:hover .icon-bubble{ animation: soft-wiggle .8s ease-in-out; }
-
-/* ==== PASTEL GRADIENT DIVIDER ==== */
-.divider-pastel{
-  height: 12px; border-radius: 9999px;
-  background: linear-gradient(90deg, #ffe4e6, #fecdd3, #ffe4e6);
-  opacity: .7;
-}
+/* ==== KATEGORI — Kawaii Bantal ==== */
 @keyframes wiggle-soft {
   0% { transform: rotate(0deg); }
   30% { transform: rotate(-2deg); }
@@ -56,13 +35,18 @@ body{
 .group:hover .group-hover\:animate-wiggle-soft {
   animation: wiggle-soft .5s ease-in-out;
 }
-/* ==== UTIL TAMBAHAN: link lembut & judul section ==== */
-.link-soft{ @apply text-rose-600 hover:text-rose-700 underline underline-offset-4 decoration-rose-200 hover:decoration-rose-400 transition; }
-.section-title{ @apply text-sm font-semibold tracking-wide text-rose-700; }
 
-/* tombol khusus WA di sidebar */
-.btn-wa{ @apply inline-flex items-center justify-center w-full px-4 py-2 rounded-xl bg-rose-500 text-white hover:bg-rose-600 shadow; }
-
-/* kartu sidebar spacing */
-.sidebar-card{ @apply card p-4 space-y-3; }
-
+/* opsional: anim untuk icon-bubble (kalau mau dipakai class .icon-bubble) */
+@keyframes soft-wiggle {
+  0%,100% { transform: translateY(0) rotate(0); }
+  50%     { transform: translateY(-2px) rotate(-1.5deg); }
+}
+.icon-bubble{
+  @apply grid place-items-center rounded-full text-2xl select-none;
+  width: 3rem; height: 3rem;
+  background: radial-gradient(circle at 30% 30%, #ffe4e6, #fecdd3);
+  box-shadow:
+    inset 0 2px 8px rgba(255,255,255,.65),
+    0 8px 18px rgba(244,63,94,.16);
+}
+.group:hover .icon-bubble{ animation: soft-wiggle .8s ease-in-out; }
