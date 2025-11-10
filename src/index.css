@@ -47,3 +47,22 @@ body{
   background: linear-gradient(90deg, #ffe4e6, #fecdd3, #ffe4e6);
   opacity: .7;
 }
+@keyframes wiggle-soft {
+  0% { transform: rotate(0deg); }
+  30% { transform: rotate(-2deg); }
+  60% { transform: rotate(2deg); }
+  100% { transform: rotate(0deg); }
+}
+.group:hover .group-hover\:animate-wiggle-soft {
+  animation: wiggle-soft .5s ease-in-out;
+}
+/* ==== UTIL TAMBAHAN: link lembut & judul section ==== */
+.link-soft{ @apply text-rose-600 hover:text-rose-700 underline underline-offset-4 decoration-rose-200 hover:decoration-rose-400 transition; }
+.section-title{ @apply text-sm font-semibold tracking-wide text-rose-700; }
+
+/* tombol khusus WA di sidebar */
+.btn-wa{ @apply inline-flex items-center justify-center w-full px-4 py-2 rounded-xl bg-rose-500 text-white hover:bg-rose-600 shadow; }
+
+/* kartu sidebar spacing */
+.sidebar-card{ @apply card p-4 space-y-3; }
+

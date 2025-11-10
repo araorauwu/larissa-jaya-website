@@ -2,54 +2,37 @@ import { Link } from 'react-router-dom'
 import { social } from '../data/catalog'
 
 export default function Sidebar(){
+  const waMsg = encodeURIComponent('Halo kak, saya mau tanya produk di Larissa Jaya 😊')
+  const waURL = `https://wa.me/${social.phone}?text=${waMsg}`
+
   return (
     <aside className="w-full md:w-72 md:sticky md:top-20 md:self-start space-y-4">
-
-      {/* MENU */}
-      <div className="card p-4">
-        <h3 className="font-semibold mb-3 text-gray-800">Menu</h3>
-        <nav className="grid gap-2 text-sm">
-          <Link to="/kontak" className="hover:text-rose-600 transition">Kontak & Lokasi</Link>
-          <a
-            href={`https://wa.me/${social.phone}`}
-            target="_blank"
-            rel="noreferrer"
-            className="hover:text-rose-600 transition"
-          >
-            Order via WhatsApp
-          </a>
-          <Link to="/tautan" className="hover:text-rose-600 transition">Tautan E-commerce</Link>
+      {/* MENU UTAMA */}
+      <div className="sidebar-card">
+        <h3 className="section-title">Menu</h3>
+        <nav className="grid gap-2">
+          <Link to="/kontak" className="link-soft">Kontak & Lokasi</Link>
+          <a href={waURL} target="_blank" rel="noreferrer" className="btn-wa">Order via WhatsApp</a>
+          <Link to="/tautan" className="link-soft">Tautan E-commerce</Link>
         </nav>
       </div>
 
-      {/* SOSIAL */}
-      <div className="card p-4">
-        <h3 className="font-semibold mb-3 text-gray-800">Ikuti Kami</h3>
-        <div className="grid gap-2 text-sm">
+      {/* SOSIAL / MARKETPLACE */}
+      <div className="sidebar-card">
+        <h3 className="section-title">Ikuti Kami</h3>
+        <div className="grid gap-2">
+          <a className="link-soft" href={social.instagram} target="_blank" rel="noreferrer">Instagram</a>
+          <a className="link-soft" href={social.tiktok} target="_blank" rel="noreferrer">TikTok</a>
+        </div>
 
-          <a href={social.instagram} target="_blank" rel="noreferrer"
-            className="hover:text-rose-600 transition">
-            Instagram
-          </a>
+        <div className="divider-pastel my-3" />
 
-          <a href={social.tiktok} target="_blank" rel="noreferrer"
-            className="hover:text-rose-600 transition">
-            TikTok
-          </a>
-
-          <a href={social.shopee} target="_blank" rel="noreferrer"
-            className="hover:text-rose-600 transition">
-            Shopee <span className="text-gray-500">(segera)</span>
-          </a>
-
-          <a href={social.tokopedia} target="_blank" rel="noreferrer"
-            className="opacity-60 pointer-events-none cursor-default">
-            Tokopedia <span className="text-gray-500">(segera)</span>
-          </a>
-
+        <h4 className="section-title">Marketplace</h4>
+        <div className="grid gap-2">
+          <a className="link-soft" href={social.shopee} target="_blank" rel="noreferrer">Shopee (segera)</a>
+          <a className="link-soft" href={social.tokopedia} target="_blank" rel="noreferrer">Tokopedia (segera)</a>
         </div>
       </div>
-
     </aside>
   )
 }
