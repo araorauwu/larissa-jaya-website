@@ -12,11 +12,15 @@ export default function Home() {
 
       {/* Intro di bawah hero */}
       <section className="container-narrow pt-4">
-        <h1 className="text-4xl font-extrabold text-rose-700">Larissa Jaya</h1>
-        <p className="mt-3 text-slate-600 max-w-3xl">
-          Menyediakan sandal, sepatu, seragam sekolah, tas, mainan, ATK, aksesoris & perlengkapan sholat.
-          Toko terpercaya di Tlogorejo, Karangawen, Demak.
-        </p>
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-rose-700">
+  Larissa Jaya
+</h1>
+
+<p className="mt-2 text-gray-700 leading-relaxed max-w-2xl">
+  Menyediakan Sandal, Sepatu, Seragam Sekolah, Tas, Mainan, ATK Alat Tulis, Aksesoris, Perlengkapan Sholat dan Harian.
+  Toko terpercaya di <span className="font-medium text-gray-800">Tlogorejo, Karangawen, Demak.</span>
+</p>
+
         <div className="mt-5 flex gap-3">
           <Link to="/katalog" className="btn-primary">Lihat Katalog</Link>
           <Link to="/kontak" className="btn-ghost">Kontak</Link>
