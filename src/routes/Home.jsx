@@ -1,4 +1,4 @@
-// D:\KULIAH\larissa-jaya-website\src\routes\Home.jsx
+// src/routes/Home.jsx
 import { Link } from 'react-router-dom';
 import CategoryGrid from '../components/CategoryGrid';
 import Sidebar from '../components/Sidebar';
@@ -7,23 +7,28 @@ import Hero from '../components/Hero';
 
 export default function Home() {
   return (
-    <div className="space-y-12">
+    <div className="space-y-10">
       <Hero />
 
-      {/* INTRO BARU DI BAWAH BANNER */}
-      <section className="container-narrow pt-4 text-left">
+      {/* Intro di bawah hero — gunakan ini (tanpa duplikat dari banner) */}
+      <section className="container-narrow pt-12">
         <h1 className="text-3xl sm:text-4xl font-extrabold text-rose-700">
-          Belanja Praktis • Harga Bersahabat
+          Larissa Jaya
         </h1>
 
-        <p className="mt-2 text-gray-700 leading-relaxed max-w-2xl">
-          Toko perlengkapan harian yang menyediakan sandal, sepatu sekolah, tas, mainan anak,
-          hingga perlengkapan sholat. Koleksi lengkap untuk kebutuhan keluarga di satu tempat.
+        <p className="mt-4 text-gray-700 leading-relaxed max-w-3xl">
+          Toko perlengkapan yang menyediakan Sandal, Sepatu, Seragam Sekolah, Atribut Pramuka,
+          Tas, Mainan, ATK, Aksesoris, Jas Hujan, Perlengkapan Salat dan harian. Toko dipercaya di
+          <span className="font-medium text-gray-800"> Tlogorejo, Karangawen, Demak.</span>
         </p>
 
-        <div className="mt-5 flex gap-3">
+        <p className="mt-3 text-gray-600 max-w-3xl">
+          Koleksi lengkap untuk kebutuhan keluarga di satu tempat.
+        </p>
+
+        <div className="mt-6 flex gap-3">
           <Link to="/katalog" className="btn-primary">Lihat Katalog</Link>
-          <Link to="/kontak" className="btn-primary">Kontak</Link>
+          <Link to="/kontak" className="btn-ghost">Kontak</Link>
         </div>
       </section>
 

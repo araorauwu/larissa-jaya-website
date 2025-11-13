@@ -1,91 +1,111 @@
 // src/routes/AdminLogin.jsx
 import { useState, useEffect } from "react";
+import { supabase } from "../lib/supabaseClient.js";
 import { useNavigate } from "react-router-dom";
 
 export default function AdminLogin() {
-  const [email, setEmail] = useState("larissajayakarangawen@gmail.com");
+  const [email, setEmail] = useState(""); // kosongkan default
   const [password, setPassword] = useState("");
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [session, setSession] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const flag = localStorage.getItem("isAdmin");
-    setIsAdmin(!!flag);
+    // jika supabase belum dikonfigurasi, skip
+    if (!supabase) return;
+
+    // cek session
+    supabase.auth.getSession().then(({ data }) => {
+      setSession(data?.session ?? null);
+    });
+
+    const { data: subscription } = supabase.auth.onAuthStateChange((_event, sess) => {
+      setSession(sess ?? null);
+    });
+
+    return () => subscription?.subscription?.unsubscribe?.();
   }, []);
 
-  const doLogin = async (e) => {
+  async function handleLogin(e) {
     e.preventDefault();
+    if (!supabase) return alert("Supabase belum dikonfigurasi.");
 
-    // ---- simple demo auth (replace with Supabase / real auth as needed) ----
-    // contoh: email = admin@example.com dan password = admin123 (ubah sesuai kebutuhan)
-    if (email && password) {
-      // TODO: ganti ke Supabase signIn jika perlu
-      // simulasi sukses:
-      localStorage.setItem("isAdmin", "1");
-      setIsAdmin(true);
-
-      // redirect otomatis ke add-product
-      navigate("/admin/add-product", { replace: true });
-    } else {
-      alert("Masukkan email & password");
+    try {
+      setLoading(true);
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+      setLoading(false);
+      if (error) {
+        alert("Login gagal: " + error.message);
+        return;
+      }
+      // arahkan ke admin add product (sesuai request)
+      navigate("/admin/add-product");
+    } catch (err) {
+      setLoading(false);
+      console.error(err);
+      alert("Terjadi error saat login.");
     }
-  };
+  }
 
-  const doLogout = () => {
-    localStorage.removeItem("isAdmin");
-    setIsAdmin(false);
+  async function handleLogout() {
+    if (!supabase) return;
+    await supabase.auth.signOut();
+    setSession(null);
+    setEmail("");
     setPassword("");
-    // tetap di halaman login (atau redirect ke /)
-  };
+  }
 
   return (
-    <div className="container-narrow py-10">
+    <div className="container-narrow py-12">
       <h1 className="text-3xl font-extrabold text-rose-700 mb-6">Admin Login</h1>
 
-      {isAdmin ? (
-        <div className="card p-6">
-          <p className="mb-4">Kamu sudah login sebagai admin.</p>
+      {session ? (
+        <div className="bg-white p-6 rounded-md shadow-sm">
+          <p className="mb-4">Anda sudah masuk sebagai admin.</p>
           <div className="flex gap-3">
             <button
-              onClick={() => navigate("/admin/add-product")}
-              className="px-4 py-2 rounded-lg bg-rose-500 text-white"
+              onClick={() => navigate("/admin")}
+              className="btn-primary"
             >
-              Buka Dashboard / Tambah Produk
+              Buka Dashboard
             </button>
-
-            <button
-              onClick={doLogout}
-              className="px-4 py-2 rounded-lg border"
-            >
+            <button onClick={handleLogout} className="btn-ghost">
               Logout
             </button>
           </div>
         </div>
       ) : (
-        <form onSubmit={doLogin} className="max-w-xl">
-          <label className="block mb-2 text-sm font-medium">Email</label>
+        <form onSubmit={handleLogin} className="max-w-lg">
+          <label className="block mb-2 font-medium">Email</label>
           <input
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full rounded-xl border px-4 py-3 mb-4"
+            placeholder="admin@contoh.com"
+            className="input w-full mb-4"
             type="email"
-            required
           />
 
-          <label className="block mb-2 text-sm font-medium">Password</label>
+          <label className="block mb-2 font-medium">Password</label>
           <input
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full rounded-xl border px-4 py-3 mb-4"
+            placeholder=""
+            className="input w-full mb-6"
             type="password"
-            required
           />
 
-          <div className="flex items-center gap-3">
-            <button type="submit" className="px-5 py-2 rounded-xl bg-rose-500 text-white shadow">
-              Masuk
+          <div className="flex gap-3">
+            <button type="submit" className="btn-primary" disabled={loading}>
+              {loading ? "Loading..." : "Masuk"}
             </button>
-            <button type="button" onClick={() => { setEmail(""); setPassword(""); }} className="px-4 py-2 rounded-xl border">
+            <button
+              type="button"
+              onClick={() => { setEmail(""); setPassword(""); }}
+              className="btn-ghost"
+            >
               Reset
             </button>
           </div>
