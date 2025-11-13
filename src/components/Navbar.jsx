@@ -1,3 +1,4 @@
+// src/components/Navbar.jsx
 import { Link, NavLink } from "react-router-dom";
 import { social } from "../data/catalog";
 
@@ -24,6 +25,10 @@ export default function Navbar() {
             <NavLink to="/katalog" className={navClass}>Katalog</NavLink>
             <NavLink to="/kontak" className={navClass}>Kontak</NavLink>
             <NavLink to="/tautan" className={navClass}>E-commerce</NavLink>
+            <NavLink to="/about" className={navClass}>Larissa Jaya</NavLink>
+
+            {/* <-- pastikan ini mengarah ke /admin-login */}
+            <NavLink to="/admin-login" className={navClass}>Admin Login</NavLink>
           </div>
 
           <a

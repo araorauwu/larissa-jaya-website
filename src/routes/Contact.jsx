@@ -1,18 +1,14 @@
-// D:\KULIAH\larissa-jaya-website\src\routes\Contact.jsx
-import { social } from '../data/catalog';
+// src/routes/Contact.jsx
+import { social } from "../data/catalog";
 
-export default function Contact(){
+export default function Contact() {
   const msg = encodeURIComponent("Halo kak, saya mau tanya tentang produk di Larissa Jaya 😊");
   const wa  = `https://wa.me/${social.phone}?text=${msg}`;
 
   return (
     <div className="container-narrow py-10">
-      {/* Banner toko */}
-      <img
-        src="/hero/store_hero.jpg"
-        alt="Toko Larissa Jaya Tampak Depan"
-        className="w-full h-[68vh] object-cover object-[40%_24%] rounded-2xl"
-      />
+      {/* Hapus/komentari banner toko supaya foto hanya di About */}
+      {/* Banner dihapus sesuai permintaan */}
 
       {/* Judul & alamat pendek */}
       <div className="text-center mt-6">

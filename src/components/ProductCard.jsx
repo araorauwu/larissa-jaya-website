@@ -1,30 +1,52 @@
-// D:\KULIAH\larissa-jaya-website\src\components\ProductCard.jsx
-import { social } from '../data/catalog';
+// src/components/ProductCard.jsx
+import React from "react";
+import { Link } from "react-router-dom";
+import { social } from "../data/catalog";
 
-export default function ProductCard({ item }){
-  const msg = encodeURIComponent(`Halo kak, saya mau tanya produk: ${item?.name} 😊`);
-  const wa  = `https://wa.me/${social.phone}?text=${msg}`;
+export default function ProductCard({ item }) {
+  const waMsg = encodeURIComponent(`Halo, saya mau tanya tentang produk: ${item.name} (${item.id})`);
+  const waLink = `https://wa.me/${social.phone}?text=${waMsg}`;
 
   return (
-    <div className="product-card p-3 flex flex-col gap-3">
-      {/* Foto */}
-      {item?.image ? (
-        <img src={item.image} alt={item.name} className="w-full rounded-xl object-cover" />
-      ) : (
-        <div className="product-photo">foto menyusul</div>
-      )}
-
-      {/* Konten */}
-      <div className="px-1 pb-2">
-        <div className="product-title">{item?.name || 'Nama Produk'}</div>
-        {item?.desc && <div className="product-meta mt-0.5">{item.desc}</div>}
-
-        <div className="mt-3">
-          <a href={wa} target="_blank" rel="noreferrer" className="btn-wa">
-            <span>WA</span> <span>Tanya via WhatsApp</span> <span>→</span>
-          </a>
+    <article className="bg-white rounded-xl overflow-hidden border border-rose-50 shadow-sm">
+      <div className="relative">
+        <img
+          src={item.img}
+          alt={item.name}
+          className="w-full h-40 object-cover"
+          loading="lazy"
+        />
+        {/* price badge */}
+        <div className="absolute top-3 left-3">
+          <span className="inline-block bg-white/90 text-rose-600 font-semibold text-sm px-3 py-1 rounded-full shadow-sm">
+            Rp {item.price?.toLocaleString()}
+          </span>
         </div>
       </div>
-    </div>
+
+      <div className="p-4">
+        <h3 className="font-semibold text-lg text-gray-800">{item.name}</h3>
+        <p className="text-sm text-gray-500 mt-2">{item.note}</p>
+
+        <div className="mt-3 text-xs text-gray-400">
+          <div>Category: <span className="text-gray-600">{item.category}</span></div>
+          <div>Sub: <span className="text-gray-600">{item.sub}</span></div>
+        </div>
+
+        <div className="mt-4 flex items-center gap-3">
+          <a
+            href={waLink}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-rose-500 text-white shadow-sm hover:bg-rose-600 transition"
+          >
+            WA Tanyakan
+          </a>
+          <Link to={`/produk/${encodeURIComponent(item.id)}`} className="text-rose-500 text-sm hover:underline">
+            Lihat
+          </Link>
+        </div>
+      </div>
+    </article>
   );
 }
