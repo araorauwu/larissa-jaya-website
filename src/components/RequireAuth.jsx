@@ -1,60 +1,66 @@
 // src/components/RequireAuth.jsx
 import { useEffect, useState } from "react";
-import { supabase } from "../lib/supabaseClient";
 import { Navigate } from "react-router-dom";
+import { supabase } from "../lib/supabaseClient";
 
+/**
+ * RequireAuth
+ * - children: komponen yang diproteksi
+ * - adminOnly: (opsional) tidak dipakai detail role di contoh ini, hanya menjaga session
+ * - fallback: alamat redir jika tidak login
+ */
 export default function RequireAuth({ children, adminOnly = true, fallback = "/admin-login" }) {
-  const [status, setStatus] = useState({ checking: true, allowed: false });
+  const [loading, setLoading] = useState(true);
+  const [session, setSession] = useState(null);
+
+  // Jika supabase tidak dikonfigurasi, jangan coba panggil API - redirect ke login
+  if (!supabase) {
+    console.warn("RequireAuth: Supabase client belum tersedia — redirect ke login.");
+    return <Navigate to={fallback} replace />;
+  }
 
   useEffect(() => {
     let mounted = true;
 
-    async function check() {
-      // ambil session
-      const { data: sessionData } = await supabase.auth.getSession();
-      const session = sessionData?.session;
-
-      if (!session) {
-        if (mounted) setStatus({ checking: false, allowed: false });
-        return;
-      }
-
-      // dapatkan user id
-      const uid = session.user.id;
-
-      if (!adminOnly) {
-        if (mounted) setStatus({ checking: false, allowed: true });
-        return;
-      }
-
-      // cek profile is_admin
-      const { data: profile, error } = await supabase
-        .from("profiles")
-        .select("is_admin")
-        .eq("id", uid)
-        .single();
-
-      if (error || !profile?.is_admin) {
-        if (mounted) setStatus({ checking: false, allowed: false });
-      } else {
-        if (mounted) setStatus({ checking: false, allowed: true });
+    async function checkSession() {
+      try {
+        const { data } = await supabase.auth.getSession();
+        if (!mounted) return;
+        setSession(data?.session ?? null);
+      } catch (err) {
+        console.error("RequireAuth -> getSession error:", err);
+        if (mounted) setSession(null);
+      } finally {
+        if (mounted) setLoading(false);
       }
     }
 
-    check();
+    checkSession();
 
-    // optional: dengarkan perubahan auth (login/logout) untuk update state
+    // listen auth state change
     const { data: sub } = supabase.auth.onAuthStateChange((_event, _session) => {
-      check();
+      if (!mounted) return;
+      setSession(_session);
     });
 
     return () => {
       mounted = false;
+      // unsubscribe listener jika tersedia
       sub?.subscription?.unsubscribe?.();
     };
-  }, [adminOnly]);
+  }, []);
 
-  if (status.checking) return <div>Memeriksa akses...</div>;
-  if (!status.allowed) return <Navigate to={fallback} replace />;
+  if (loading) {
+    return (
+      <div className="p-6">
+        <div className="text-sm text-gray-600">Memeriksa sesi ...</div>
+      </div>
+    );
+  }
+
+  if (!session) {
+    return <Navigate to={fallback} replace />;
+  }
+
   return children;
 }
